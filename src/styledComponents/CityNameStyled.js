@@ -4,9 +4,12 @@ const CityNameStyled = styled.div`
   display: flex;
   align-items: center;
   margin: 10px auto;
-  
+
   p {
-      margin 10px;
+    margin: 20px;
+    font-size: 25px;
+    color: #363636e8;
+    font-weight: 500;
   }
 `;
 

@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Item from "../styledComponents/Item";
 import UlStyled from "../styledComponents/UlStyled";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 
 export const ItemWeather = (item) => {
   const dataCurrentCity = useSelector((state) => state.weather.currentCity);
@@ -10,30 +11,10 @@ export const ItemWeather = (item) => {
   );
   console.log(dataWeather);
 
-  const getWeekDay = (date) => {
-    let days = [
-      "Воскресенье",
-      "Понедельник",
-      "Вторник",
-      "Среда",
-      "Четверг",
-      "Пятница",
-      "Суббота",
-    ];
-
-    return days[date.getDay()];
-  };
-
-  /*  let date = ; // 3 января 2014 года */
-
-  /* 
-  const weekdayName = new Date().toLocaleString("ru", { weekday: "long" });
-    */
-
   const CardsWeather = ({ item }) => {
     return (
       <Item aitems="center">
-        <p>Pyatniza</p>
+        <p>{dayjs(item.dt_txt).format("ddd, MMM D, h:mm A")}</p>
         <i className={`owf owf-${item.weather[0].id}  owf-5x `}></i>
         <p>Температура {item.main.temp} °C</p>
         <p>Ощущается как {item.main.feels_like} °C</p>

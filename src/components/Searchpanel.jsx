@@ -5,6 +5,7 @@ import {
   SET_WEATHER_CURRENT_CITY,
 } from "../constants/weather";
 import SearchPanelStyle from "../styledComponents/SearchPanleStyled";
+import Wrapper from "../styledComponents/wrapper";
 
 const SearchPanel = () => {
   const [cityName, setCityName] = React.useState("минск");
@@ -32,10 +33,12 @@ const SearchPanel = () => {
   };
 
   return (
-    <SearchPanelStyle>
-      <input type="text" placeholder="Введите город" onInput={textInput} />
-      <button onClick={handleOnClick}>Показать погоду</button>
-    </SearchPanelStyle>
+    <Wrapper bcolor="#e9ecef;" width="100%" height="170px">
+      <SearchPanelStyle>
+        <input type="text" placeholder="Введите город" onInput={textInput} />
+        <button onClick={handleOnClick}>Показать погоду</button>
+      </SearchPanelStyle>
+    </Wrapper>
   );
 };
 
