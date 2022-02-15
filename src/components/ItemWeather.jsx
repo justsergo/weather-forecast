@@ -3,8 +3,6 @@ import Item from "../styledComponents/Item";
 import UlStyled from "../styledComponents/UlStyled";
 import { Link } from "react-router-dom";
 
-
-
 export const ItemWeather = (item) => {
   const dataCurrentCity = useSelector((state) => state.weather.currentCity);
   const dataWeather = useSelector((state) =>
@@ -26,23 +24,20 @@ export const ItemWeather = (item) => {
     return days[date.getDay()];
   };
 
-  let date = Date.now() // 3 января 2014 года
-
-
-  
+  /*  let date = ; // 3 января 2014 года */
 
   /* 
   const weekdayName = new Date().toLocaleString("ru", { weekday: "long" });
     */
 
-  const CardsWeather = (props) => {
+  const CardsWeather = ({ item }) => {
     return (
       <Item aitems="center">
-        <p>{date}</p>
-        <i className={`owf owf-${props.value.weather[0].id }  owf-5x `}></i>
-        <p>Температура {props.value.main.temp} °C</p>
-        <p>Ощущается как {props.value.main.feels_like} °C</p>
-        <Link to="/info">Подробно</Link>
+        <p>Pyatniza</p>
+        <i className={`owf owf-${item.weather[0].id}  owf-5x `}></i>
+        <p>Температура {item.main.temp} °C</p>
+        <p>Ощущается как {item.main.feels_like} °C</p>
+        <Link to={`/info/${item.dt}`}>Подробно</Link>
       </Item>
     );
   };
@@ -50,7 +45,7 @@ export const ItemWeather = (item) => {
   return (
     <UlStyled>
       {dataWeather?.map((item) => {
-        return <CardsWeather value={item} key={item.dt} />;
+        return <CardsWeather item={item} key={item.dt} />;
       })}
     </UlStyled>
   );
