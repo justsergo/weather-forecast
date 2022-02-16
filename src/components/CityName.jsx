@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import CityNameStyled from "../styledComponents/CityNameStyled";
 
-export const TextInfoPosition = () => {
+const CityName = () => {
   const dataCurrentCity = useSelector((state) => state.weather.currentCity);
   const dataWeather = useSelector(
     (state) => state.weather.data[dataCurrentCity]?.city
@@ -14,3 +14,5 @@ export const TextInfoPosition = () => {
     </CityNameStyled>
   );
 };
+
+export default CityName;

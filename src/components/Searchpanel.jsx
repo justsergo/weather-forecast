@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   FETCH_WEATHER_REQUEST,
   SET_WEATHER_CURRENT_CITY,
@@ -9,6 +10,7 @@ import Wrapper from "../styledComponents/wrapper";
 
 const SearchPanel = () => {
   const [cityName, setCityName] = React.useState("минск");
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const weather = useSelector((state) => state.weather);
@@ -30,6 +32,7 @@ const SearchPanel = () => {
         payload: { cityName },
       });
     }
+    navigate(`/${cityName}`);
   };
 
   return (

@@ -1,14 +1,31 @@
+import React from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { FETCH_WEATHER_REQUEST } from "../constants/weather";
 import Item from "../styledComponents/Item";
 import UlStyled from "../styledComponents/UlStyled";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes, useParams } from "react-router-dom";
 import dayjs from "dayjs";
+import ItemWeatherFull from "../components/ItemWeatherFull";
 
-export const ItemWeather = (item) => {
-  const dataCurrentCity = useSelector((state) => state.weather.currentCity);
+const ItemWeather = () => {
+  const dispatch = useDispatch();
+  const { city } = useParams();
+  console.log(city);
+  React.useEffect(() => {
+    if (city) {
+      dispatch({
+        type: FETCH_WEATHER_REQUEST,
+        payload: { cityName: city },
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const currentCity = useSelector((state) => state.weather.currentCity);
   const dataWeather = useSelector((state) =>
-    state.weather.data[dataCurrentCity]?.list.slice(0, 5)
+    state.weather.data[currentCity]?.list.slice(0, 5)
   );
+
   console.log(dataWeather);
 
   const CardsWeather = ({ item }) => {
@@ -18,16 +35,27 @@ export const ItemWeather = (item) => {
         <i className={`owf owf-${item.weather[0].id}  owf-5x `}></i>
         <p>Температура {item.main.temp} °C</p>
         <p>Ощущается как {item.main.feels_like} °C</p>
-        <Link to={`/info/${item.dt}`}>Подробно</Link>
+        <Link to={`/${currentCity}/${item.dt}`}>Подробно</Link>
       </Item>
     );
   };
 
   return (
-    <UlStyled>
-      {dataWeather?.map((item) => {
-        return <CardsWeather item={item} key={item.dt} />;
-      })}
-    </UlStyled>
+    <Routes>
+      <Route
+        path="/"
+        exact
+        element={
+          <UlStyled>
+            {dataWeather?.map((item) => {
+              return <CardsWeather item={item} key={item.dt} />;
+            })}
+          </UlStyled>
+        }
+      />
+      <Route path="/:id" exact element={<ItemWeatherFull />} />
+    </Routes>
   );
 };
+
+export default ItemWeather;

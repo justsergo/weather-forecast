@@ -1,15 +1,13 @@
-import SearchPanel from "./components/Searchpanel";
-import { TextInfoPosition } from "./components/CityName";
-import { ItemWeather } from "./components/ItemWeather";
-import Wrapper from "./styledComponents/wrapper";
+import React from "react";
+import Header from "./components/Header";
+import Content from "./components/Content";
 
 function App() {
   return (
-    <Wrapper aitems={"center"}>
-      <SearchPanel />
-      <TextInfoPosition />
-      <ItemWeather />
-    </Wrapper>
+    <>
+      <Header />
+      <Content />
+    </>
   );
 }
 
