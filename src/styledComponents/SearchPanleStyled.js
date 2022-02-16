@@ -8,14 +8,6 @@ const SearchPanelStyle = styled.div`
   margin: 10px auto;
   background-color: #00020c8c;
 
-  button {
-    margin: 10px;
-    width: 70px;
-    height: 55px;
-    border-radius: 10px;
-    background-color: #e8112fe0;
-  }
-
   input {
     margin: 10px;
     height: 40px;

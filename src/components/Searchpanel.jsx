@@ -7,17 +7,27 @@ import {
 } from "../constants/weather";
 import SearchPanelStyle from "../styledComponents/SearchPanleStyled";
 import Wrapper from "../styledComponents/wrapper";
+import ButtonStyled from "../styledComponents/ButtonStyled";
 
 const SearchPanel = () => {
   const [cityName, setCityName] = React.useState("минск");
+  const [handleButton, setHandleButton] = React.useState(["#e8112fe0", false]);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const weather = useSelector((state) => state.weather);
+  const currentCity = useSelector((state) => state.weather.currentCity);
 
   const textInput = (event) => {
     const text = event.target.value;
     setCityName(text);
+    if (text === "") {
+      setHandleButton(["#00020c8c", true]);
+    } else if (text === currentCity) {
+      setHandleButton(["#00020c8c", true]);
+    } else {
+      setHandleButton(["#e8112fe0", false]);
+    }
   };
 
   const handleOnClick = () => {
@@ -39,7 +49,13 @@ const SearchPanel = () => {
     <Wrapper bcolor="#e9ecef;" width="100%" height="170px">
       <SearchPanelStyle>
         <input type="text" placeholder="Введите город" onInput={textInput} />
-        <button onClick={handleOnClick}>Показать погоду</button>
+        <ButtonStyled
+          bcolor={handleButton[0]}
+          onClick={handleOnClick}
+          disabled={handleButton[1]}
+        >
+          Показать погоду
+        </ButtonStyled>
       </SearchPanelStyle>
     </Wrapper>
   );

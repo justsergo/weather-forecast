@@ -18,6 +18,11 @@ const ItemWeather = () => {
         type: FETCH_WEATHER_REQUEST,
         payload: { cityName: city },
       });
+    } else {
+      dispatch({
+        type: FETCH_WEATHER_REQUEST,
+        payload: { cityName: "minsk" },
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
