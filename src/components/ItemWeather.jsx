@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { FETCH_WEATHER_REQUEST } from "../constants/weather";
 import Item from "../styledComponents/Item";
-import UlStyled from "../styledComponents/UlStyled";
+import CustomUl from "../styledComponents/CustomUl";
 import { Link, Route, Routes, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import ItemWeatherFull from "../components/ItemWeatherFull";
@@ -51,11 +51,11 @@ const ItemWeather = () => {
         path="/"
         exact
         element={
-          <UlStyled>
+          <CustomUl>
             {dataWeather?.map((item) => {
               return <CardsWeather item={item} key={item.dt} />;
             })}
-          </UlStyled>
+          </CustomUl>
         }
       />
       <Route path="/:id" exact element={<ItemWeatherFull />} />
